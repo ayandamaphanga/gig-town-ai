@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-township.jpg";
 
 const categories = [
@@ -81,21 +82,27 @@ const Index = () => {
                 placeholder="Search for jobs near you..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-14 text-lg"
+                className="pl-10 h-14 text-lg bg-white/95 backdrop-blur-sm text-black placeholder:text-gray-600"
               />
             </div>
-            <Button size="lg" className="btn-primary h-14 px-8 text-lg">
-              Search
-            </Button>
+            <Link to="/find-work">
+              <Button size="lg" className="btn-primary h-14 px-8 text-lg">
+                Search
+              </Button>
+            </Link>
           </div>
           
           <div className="mt-8 flex gap-4 flex-wrap justify-center">
-            <Button variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
-              Post a Job
-            </Button>
-            <Button variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
-              Find Work
-            </Button>
+            <Link to="/post-job">
+              <Button variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
+                Post a Job
+              </Button>
+            </Link>
+            <Link to="/find-work">
+              <Button variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
+                Find Work
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -107,18 +114,17 @@ const Index = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {categories.map((category) => (
-              <Card 
-                key={category.id} 
-                className="card-elevated cursor-pointer hover:border-primary"
-              >
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className={`${category.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 pulse-glow`}>
-                    <category.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{category.name}</h3>
-                  <Badge variant="secondary">{category.jobs} jobs</Badge>
-                </CardContent>
-              </Card>
+              <Link key={category.id} to="/find-work">
+                <Card className="card-elevated cursor-pointer hover:border-primary">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <div className={`${category.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 pulse-glow`}>
+                      <category.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">{category.name}</h3>
+                    <Badge variant="secondary">{category.jobs} jobs</Badge>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
@@ -129,7 +135,9 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-4xl font-bold">Featured Jobs</h2>
-            <Button variant="outline" className="btn-secondary">View All</Button>
+            <Link to="/find-work">
+              <Button variant="outline" className="btn-secondary">View All</Button>
+            </Link>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -172,12 +180,16 @@ const Index = () => {
             Sign up today and get verified in minutes.
           </p>
           <div className="flex gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="h-14 px-8 text-lg">
-              Sign Up as Worker
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20">
-              Post a Job
-            </Button>
+            <Link to="/find-work">
+              <Button size="lg" variant="secondary" className="h-14 px-8 text-lg">
+                Sign Up as Worker
+              </Button>
+            </Link>
+            <Link to="/post-job">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20">
+                Post a Job
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
